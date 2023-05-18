@@ -1,1 +1,25 @@
-<p>expositor-libros works!</p>
+<h2>Bienvenido al expositor</h2>
+<p>El modo actual es: {{modoElegido}}</p>
+<div *ngIf="modoElegido === 'Comprar'">
+    <p>Carrito</p>
+    <p> 0 unidades compradas</p>
+</div>
+
+<div class="cards">
+    <mat-card *ngFor="let libro of librosOfrecidos">
+        <mat-card-header>
+            <mat-card-title>{{libro.titulo | uppercase}}</mat-card-title>
+            <mat-card-subtitle>{{libro.autor}}</mat-card-subtitle>
+            <mat-card-subtitle>{{libro.stock}}</mat-card-subtitle>
+            <mat-card-subtitle>{{libro.precio}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Primary</button>
+            <button mat-raised-button color="accent">Accent</button>
+            <button mat-raised-button color="warn">Warn</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<button (click)="modoElegido = 'Comprar'">Comprar</button>
+<button (click)="cambiarModo('Consultar')">Consultar</button>

@@ -4,17 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExpositorLibrosComponent } from './expositor-libros/expositor-libros.component';
-//cositas
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { CreacionLibroComponent } from './creacion-libro/creacion-libro.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guards';
+
 @NgModule({
   declarations: [
     AppComponent,
-    ExpositorLibrosComponent
+    ExpositorLibrosComponent,
+    CreacionLibroComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
