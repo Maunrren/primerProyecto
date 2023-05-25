@@ -12,7 +12,6 @@ export class AuthGuard implements CanActivate{
         const token:string | null = sessionStorage.getItem('token');
         const haIniciadoSesion:boolean = token !==null;
         if(haIniciadoSesion){
-           // this.router.navigateByUrl('creacion');
             return true;
         }
         else{

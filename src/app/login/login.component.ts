@@ -1,13 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+
+  formularioLogin: FormGroup;
+  router:Router = inject(Router);
+
+  ngOnInit(){
+    this.formularioLogin = new FormGroup({
+      //primer parametro es valor por defecto -> null, segundo parametro es el validador. Si quieres varios validadores los insertaras en un array []
+      correo: new FormControl(null,[Validators.email,Validators.required]),
+      contrasena: new FormControl(null,Validators.required)
+
+    })
+
+    
+  }
 
   iniciarSesion(){
-    sessionStorage.setItem('token','1');
+    const correEscrito: string = this.formularioLogin.get('correo')?.value;
+    const contrasena: string = this.formularioLogin.get('contrasena')?.value;
+
+    if(correEscrito === 'admin@gmail.com' && contrasena === '1234'){
+      sessionStorage.setItem('token','1');
+      //Método navigateByUrl
+      this.router.navigateByUrl('creacion');
+    }
+
+    
   }
 }

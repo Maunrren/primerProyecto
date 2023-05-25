@@ -1,1 +1,20 @@
-<button (click)="iniciarSesion()">Iniciar sesión</button>
+<h1>Formulario Inicio de sesión</h1>
+
+<form [formGroup]="formularioLogin">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="hola@gmail.com" formControlName="correo">
+        <!--Se puede controlar los mensajes de error de dos formas-->
+        <mat-error *ngIf="formularioLogin.get('correo')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="formularioLogin.controls?.['correo']?.errors?.['email']">Este campo necesita ser del formato email -> ejemplo@dominio.com</mat-error>
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Contraseña</mat-label>
+        <input matInput placeholder="*******" formControlName="contrasena">
+        <mat-error>Este campo es obligatorio</mat-error>
+    </mat-form-field>
+    <button mat-raised-button type="button" color="primary" (click)="iniciarSesion()" [disabled]="formularioLogin.invalid">Iniciar sesión</button>
+</form>
+<pre>
+    {{formularioLogin.value | json}}
+</pre>
