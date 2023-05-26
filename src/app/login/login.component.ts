@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +12,9 @@ export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup;
   router:Router = inject(Router);
+
+  notificacion:MatSnackBar = inject(MatSnackBar);
+
 
   ngOnInit(){
     this.formularioLogin = new FormGroup({
@@ -31,6 +35,9 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('token','1');
       //Método navigateByUrl
       this.router.navigateByUrl('creacion');
+    }
+    else{
+      this.notificacion.open('Correo o contraseña incorrectos', 'Cerrar', {duration:3000})
     }
 
     
