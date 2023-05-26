@@ -12,7 +12,7 @@ export class ExpositorLibrosComponent {
   modoElegido:string = 'Comprar';
 
   librosOfrecidos:Libro[] = [];
-
+  librosComprados:Libro[] = [];
   ngOnInit(){
     const libro1:Libro = {
       titulo: 'Cien años de soledad',
@@ -46,6 +46,10 @@ export class ExpositorLibrosComponent {
    */
   cambiarModo(modoDeseado:string):void{
     this.modoElegido = modoDeseado;
+  }
+
+  gestionaCompra(libro:Libro){
+    this.librosComprados.push(libro);
   }
 
 }

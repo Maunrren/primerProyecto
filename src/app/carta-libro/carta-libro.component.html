@@ -1,0 +1,13 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{libroRecibido.titulo | uppercase}}</mat-card-title>
+        <mat-card-subtitle>{{libroRecibido.autor}}</mat-card-subtitle>
+        <mat-card-subtitle>{{libroRecibido.stock}}</mat-card-subtitle>
+        <mat-card-subtitle>{{libroRecibido.precio}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="comprar()">Comprar</button>
+        <button mat-raised-button color="accent">Añadir</button>
+        <button mat-raised-button color="warn">Restar</button>
+    </mat-card-actions>
+</mat-card>

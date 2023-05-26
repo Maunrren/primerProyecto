@@ -21,12 +21,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { CartaLibroComponent } from './carta-libro/carta-libro.component';
 @NgModule({
   declarations: [
     AppComponent,
     ExpositorLibrosComponent,
     CreacionLibroComponent,
-    LoginComponent
+    LoginComponent,
+    CartaLibroComponent
   ],
   imports: [
     BrowserModule,
