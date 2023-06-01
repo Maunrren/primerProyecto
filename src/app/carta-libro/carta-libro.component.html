@@ -1,11 +1,16 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>{{libroRecibido.titulo | uppercase}}</mat-card-title>
-        <mat-card-subtitle>{{libroRecibido.autor}}</mat-card-subtitle>
-        <mat-card-subtitle>{{libroRecibido.stock}}</mat-card-subtitle>
-        <mat-card-subtitle>{{libroRecibido.precio}}</mat-card-subtitle>
+        <mat-card-title>Titulo: {{libroRecibido.titulo | uppercase}}</mat-card-title>
+        <mat-card-subtitle>Autor: {{libroRecibido.autor}}</mat-card-subtitle>
+        <ng-container *ngIf="!estaEnCarrito">
+        <mat-card-subtitle >Stock: {{libroRecibido.stock}}</mat-card-subtitle>
+        <mat-card-subtitle >Precio: {{libroRecibido.precio}}</mat-card-subtitle>
+        </ng-container>
     </mat-card-header>
-    <mat-card-actions>
+    <mat-card-actions *ngIf="estaEnCarrito">
+        <button mat-raised-button color="primary" (click)="sacar()">Quitar del carrito</button>
+    </mat-card-actions>
+    <mat-card-actions *ngIf="!estaEnCarrito">
         <button mat-raised-button color="primary" (click)="comprar()">Comprar</button>
         <button mat-raised-button color="accent">Añadir</button>
         <button mat-raised-button color="warn">Restar</button>
