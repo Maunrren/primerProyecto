@@ -2,6 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LibroService } from '../services/libro.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
   router:Router = inject(Router);
 
   notificacion:MatSnackBar = inject(MatSnackBar);
-
+  libroService:LibroService = inject(LibroService);
+  configService:ConfigService = inject(ConfigService);
 
   ngOnInit(){
     this.formularioLogin = new FormGroup({
@@ -22,8 +25,9 @@ export class LoginComponent implements OnInit {
       correo: new FormControl(null,[Validators.email,Validators.required]),
       contrasena: new FormControl(null,Validators.required)
 
-    })
-
+    });
+    console.log(this.libroService.miLibroFavorito);
+    this.configService.tituloWeb.next('Inicio de sesión');
     
   }
 

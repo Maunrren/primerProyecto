@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Libro } from '../interfaces/Libro';
 import { Observable } from 'rxjs';
+import { LibroService } from '../services/libro.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-expositor-libros',
@@ -14,6 +16,9 @@ export class ExpositorLibrosComponent {
 
   librosOfrecidos:Libro[] = [];
   librosComprados:Libro[] = [];
+  libroService:LibroService = inject(LibroService);
+  configService:ConfigService = inject(ConfigService);
+
   ngOnInit(){
     /*PROMESA
     console.log('primera parte');
@@ -27,6 +32,10 @@ export class ExpositorLibrosComponent {
     this.recuperarLibrosObservable().subscribe(librosBBDD =>{
       this.librosOfrecidos= librosBBDD;
     });
+
+    console.log(this.libroService.miLibroFavorito);
+    this.libroService.miLibroFavorito = 'El relato de un naufrago';
+    this.configService.tituloWeb.next('Expositor de libros');
   }
 
 
