@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CreacionLibroComponent } from './creacion-libro/creacion-libro.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './guards/auth.guards';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -45,7 +44,7 @@ import { LibroService } from './services/libro.service';
     MatFormFieldModule,
     MatSnackBarModule
   ],
-  providers: [AuthGuard,LibroService],
+  providers: [LibroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

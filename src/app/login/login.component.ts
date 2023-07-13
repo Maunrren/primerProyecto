@@ -18,7 +18,9 @@ export class LoginComponent implements OnInit {
   notificacion:MatSnackBar = inject(MatSnackBar);
   libroService:LibroService = inject(LibroService);
   configService:ConfigService = inject(ConfigService);
-
+  constructor(){
+    this.configService.tituloWeb.next('Inicio de sesión');
+  }
   ngOnInit(){
     this.formularioLogin = new FormGroup({
       //primer parametro es valor por defecto -> null, segundo parametro es el validador. Si quieres varios validadores los insertaras en un array []
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     });
     console.log(this.libroService.miLibroFavorito);
-    this.configService.tituloWeb.next('Inicio de sesión');
+    
     
   }
 

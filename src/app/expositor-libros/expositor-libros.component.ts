@@ -19,23 +19,27 @@ export class ExpositorLibrosComponent {
   libroService:LibroService = inject(LibroService);
   configService:ConfigService = inject(ConfigService);
 
+  constructor(){
+    this.configService.tituloWeb.next('Expositor de libros');
+  }
+
   ngOnInit(){
     /*PROMESA
     console.log('primera parte');
-    this.recuperarLibrosPromesa().then(librosBBDD=>{
+    this.libroService.recuperarLibrosPromesa().then(librosBBDD=>{
       this.librosOfrecidos = librosBBDD;
       console.log('llega la respuesta');
     });
     console.log('segundaparte');*/
 
     //Observable
-    this.recuperarLibrosObservable().subscribe(librosBBDD =>{
+    this.libroService.recuperarLibrosObservable().subscribe(librosBBDD =>{
       this.librosOfrecidos= librosBBDD;
     });
 
     console.log(this.libroService.miLibroFavorito);
     this.libroService.miLibroFavorito = 'El relato de un naufrago';
-    this.configService.tituloWeb.next('Expositor de libros');
+    
   }
 
 
@@ -65,71 +69,6 @@ export class ExpositorLibrosComponent {
   }
 
 
-  recuperarLibrosPromesa(): Promise<Libro[]>{
-    return new Promise<Libro[]>((resolve,reject)=>{
-        //Código a ejecutar cuando alguien solicite la Promesa.
-        setTimeout(() =>{
-          //codigo a ejecutar
-          const libro1:Libro = {
-            titulo: 'Cien años de soledad',
-            cantidadPaginas: 550,
-            autor: 'Gabriel García Marquez',
-            stock:10,
-            precio:20
-          }
-          const libro2:Libro = {
-            titulo: 'Cronicas de una muerte anunciada',
-            cantidadPaginas: 250,
-            autor: 'Gabriel García Marquez',
-            stock:15,
-            precio:25
-          }
-          const libro3:Libro = {
-            titulo: 'Lazarillo de Tormes',
-            cantidadPaginas: 150,
-            stock:80,
-            precio:13
-          }
   
-          const librosBBDD = [libro1,libro2,libro3];
-          resolve(librosBBDD);
-        },2000);
-        
-    });
-
-  }
-
-  recuperarLibrosObservable():Observable<Libro[]>{
-    return new Observable<Libro[]>(observer =>{
-      //nunca usar timeout en ejemplos reales.
-      setTimeout(() => {
-        const libro1:Libro = {
-          titulo: 'Cien años de soledad',
-          cantidadPaginas: 550,
-          autor: 'Gabriel García Marquez',
-          stock:10,
-          precio:20
-        }
-        const libro2:Libro = {
-          titulo: 'Cronicas de una muerte anunciada',
-          cantidadPaginas: 250,
-          autor: 'Gabriel García Marquez',
-          stock:15,
-          precio:25
-        }
-        const libro3:Libro = {
-          titulo: 'Lazarillo de Tormes',
-          cantidadPaginas: 150,
-          stock:80,
-          precio:13
-        }
-        const librosBBDD = [libro1,libro2,libro3];
-
-        observer.next(librosBBDD);
-        //esto hace que ya no van a dar más datos, sin complete se queda a la espera.
-        observer.complete();
-      }, 2000);
-    });
-  }
 
 }

@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ExpositorLibrosComponent } from './expositor-libros/expositor-libros.component';
 import { CreacionLibroComponent } from './creacion-libro/creacion-libro.component';
-import { AuthGuard } from './guards/auth.guards';
 import { LoginComponent } from './login/login.component';
+import { LoginService } from './services/login.service';
 
 const routes: Routes = [
   { path:'expositor',
@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'creacion',
     component:CreacionLibroComponent,
     title: 'Creación de libros',
-    canActivate:[AuthGuard]
+    canActivate:[
+      () => inject(LoginService).IsLogged()
+    ]
   },
   { path: 'login',
     component:LoginComponent,
