@@ -22,6 +22,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { CartaLibroComponent } from './carta-libro/carta-libro.component';
 import { LibroService } from './services/libro.service';
+// Import library module
+import { NgxSpinnerModule } from "ngx-spinner";
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +45,9 @@ import { LibroService } from './services/libro.service';
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxSpinnerModule,
+    HttpClientModule
   ],
   providers: [LibroService],
   bootstrap: [AppComponent]
