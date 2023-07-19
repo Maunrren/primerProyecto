@@ -64,4 +64,17 @@ export class LibroService {
     
     });
   }
+
+  crearLibrosObservable():Observable<Libro[]>{
+    return new Observable<Libro[]>(observer =>{
+
+        this.httpClient.post<Libro[]>('http://localhost:3000/libros',{
+
+
+        }
+        );
+        
+    
+    });
+  }
 }

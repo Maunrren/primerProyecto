@@ -1,1 +1,29 @@
-<p>creacion-libro works!</p>
+<h1>Formulario Inicio de sesión</h1>
+
+<form [formGroup]="formularioCreacion">
+    <mat-form-field>
+        <mat-label>Titulo del libro</mat-label>
+        <input matInput placeholder="El Señor de los Anillos: La comunidad del anillo" formControlName="titulo">
+        <!--Se puede controlar los mensajes de error de dos formas-->
+        <mat-error *ngIf="formularioCreacion.get('titulo')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <!--<mat-error *ngIf="formularioLogin.controls?.['correo']?.errors?.['email']">Este campo necesita ser del formato email -> ejemplo@dominio.com</mat-error>-->
+    </mat-form-field>4
+    <mat-form-field >
+        <mat-label>Autor</mat-label>
+        <input matInput placeholder="J.R.R. Tolkien" formControlName="autor">
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Stock</mat-label>
+        <input matInput placeholder="33" formControlName="stock">
+        <mat-error *ngIf="formularioCreacion.get('stock')?.hasError('required')">Este campo es obligatorio</mat-error>
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Precio</mat-label>
+        <input matInput placeholder="10'79€" formControlName="precio">
+        <mat-error *ngIf="formularioCreacion.get('precio')?.hasError('required')">Este campo es obligatorio</mat-error>
+    </mat-form-field>
+    <button mat-raised-button type="button" color="primary" [disabled]="formularioCreacion.invalid">Añadir Libro</button>
+</form>
+<pre>
+    {{formularioCreacion.value | json}}
+</pre>
