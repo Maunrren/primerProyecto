@@ -38,22 +38,6 @@
         "autor": "gabriel",
         "stock": "4",
         "precio": "33"
-      },
-      {
-        "id": 6,
-        "titulo": "hola",
-        "cantidadPaginas": "5",
-        "autor": "miAutor",
-        "stock": "5",
-        "precio": "10"
-      },
-      {
-        "id": 7,
-        "titulo": "dwad",
-        "cantidadPaginas": "dwadaw",
-        "autor": "awdawd",
-        "stock": "awdaw",
-        "precio": "dawd"
       }
     ]
   }

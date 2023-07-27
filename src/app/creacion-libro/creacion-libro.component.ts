@@ -12,7 +12,7 @@ import { Libro } from '../interfaces/Libro';
 export class CreacionLibroComponent implements OnInit {
 
   formularioCreacion: FormGroup;
-  librosOfrecidos:Libro[] = [];
+  librosCreados:Libro[] = [];
   libroService:LibroService = inject(LibroService);
   configService:ConfigService = inject(ConfigService);
 
@@ -26,13 +26,30 @@ export class CreacionLibroComponent implements OnInit {
       //primer parametro es valor por defecto -> null, segundo parametro es el validador. Si quieres varios validadores los insertaras en un array []
       titulo: new FormControl(null,Validators.required),
       autor: new FormControl(null),
+      cantidadPaginas: new FormControl(null,Validators.required),
       stock: new FormControl(null,Validators.required),
       precio: new FormControl(null,Validators.required)
     });
   
-    //Observable
-    this.libroService.recuperarLibrosObservable().subscribe(librosBBDD =>{
-      this.librosOfrecidos= librosBBDD;
-    });
+  }
+
+  crearLibro(){
+    const titulo: string = this.formularioCreacion.get('titulo')?.value;
+    const autor: string = this.formularioCreacion.get('autor')?.value;
+    const cantidadPaginas: number = this.formularioCreacion.get('cantidadPaginas')?.value;
+    const stock: number = this.formularioCreacion.get('stock')?.value;
+    const precio: number = this.formularioCreacion.get('precio')?.value;
+
+    const libro: Libro = {
+      titulo : titulo,
+      autor: autor,
+      cantidadPaginas: cantidadPaginas,
+      stock: stock,
+      precio: precio
+    }
+      this.libroService.crearLibrosObservable(libro);
+
+      this.librosCreados.push(libro);
+
   }
 }

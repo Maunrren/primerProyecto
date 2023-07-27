@@ -55,24 +55,25 @@ export class LibroService {
   }
 
   recuperarLibrosObservable():Observable<Libro[]>{
+
     return new Observable<Libro[]>(observer =>{
         this.httpClient.get<Libro[]>('http://localhost:3000/libros').subscribe(librosBBDD=>{
+
+        console.log(librosBBDD);
+        this.spinner.show();
         observer.next(librosBBDD);
         observer.complete();
+        this.spinner.hide();
         });
         
     
     });
   }
 
-  crearLibrosObservable():Observable<Libro[]>{
+  crearLibrosObservable(libro:Libro):Observable<Libro[]>{
     return new Observable<Libro[]>(observer =>{
 
-        this.httpClient.post<Libro[]>('http://localhost:3000/libros',{
-
-
-        }
-        );
+        this.httpClient.post<Libro[]>('http://localhost:3000/libros',libro);
         
     
     });

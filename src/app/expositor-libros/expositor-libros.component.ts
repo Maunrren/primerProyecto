@@ -31,7 +31,6 @@ export class ExpositorLibrosComponent {
       console.log('llega la respuesta');
     });
     console.log('segundaparte');*/
-
     //Observable
     this.libroService.recuperarLibrosObservable().subscribe(librosBBDD =>{
       this.librosOfrecidos= librosBBDD;

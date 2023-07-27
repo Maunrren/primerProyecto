@@ -2,6 +2,7 @@
     <mat-card-header>
         <mat-card-title>Titulo: {{libroRecibido.titulo | uppercase}}</mat-card-title>
         <mat-card-subtitle>Autor: {{libroRecibido.autor}}</mat-card-subtitle>
+        <mat-card-subtitle >Cantidad de Paginas: {{libroRecibido.cantidadPaginas}}</mat-card-subtitle>
         <ng-container *ngIf="!estaEnCarrito">
         <mat-card-subtitle >Stock: {{libroRecibido.stock}}</mat-card-subtitle>
         <mat-card-subtitle >Precio: {{libroRecibido.precio}}</mat-card-subtitle>
