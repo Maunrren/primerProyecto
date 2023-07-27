@@ -13,9 +13,10 @@ export class CreacionLibroComponent implements OnInit {
 
   formularioCreacion: FormGroup;
   librosCreados:Libro[] = [];
+  libroCreado:Libro;
+  librosOfrecidos:Libro[] = [];
   libroService:LibroService = inject(LibroService);
   configService:ConfigService = inject(ConfigService);
-
 
   constructor(){
     this.configService.tituloWeb.next('Creador de libros');
@@ -47,9 +48,13 @@ export class CreacionLibroComponent implements OnInit {
       stock: stock,
       precio: precio
     }
-      this.libroService.crearLibrosObservable(libro);
+      this.libroService.crearLibroObservable(libro).subscribe(librosBBDD =>{
+        this.libroCreado = librosBBDD;
 
-      this.librosCreados.push(libro);
+        this.librosCreados.push(this.libroCreado);
+
+      });
+      
 
   }
 }
