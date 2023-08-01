@@ -14,6 +14,6 @@
     <mat-card-actions *ngIf="!estaEnCarrito">
         <button mat-raised-button color="primary" (click)="comprar()">Comprar</button>
         <button mat-raised-button color="accent">Añadir</button>
-        <button mat-raised-button color="warn">Restar</button>
+        <button mat-raised-button color="warn"(click)="mostrarDialogoEliminar()" >Eliminar</button>
     </mat-card-actions>
 </mat-card>

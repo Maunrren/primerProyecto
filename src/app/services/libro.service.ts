@@ -20,7 +20,7 @@ export class LibroService {
 
   }
 
-  recuperarLibrosPromesa(): Promise<Libro[]> {
+  /*recuperarLibrosPromesa(): Promise<Libro[]> {
     return new Promise<Libro[]>((resolve, reject) => {
       //Código a ejecutar cuando alguien solicite la Promesa.
       setTimeout(() => {
@@ -52,7 +52,7 @@ export class LibroService {
 
     });
 
-  }
+  }*/
 
   recuperarLibrosObservable(): Observable<Libro[]> {
 
@@ -74,6 +74,17 @@ export class LibroService {
     return new Observable<Libro>(observer => {
 
       this.httpClient.post<Libro>('http://localhost:3000/libros', libro).subscribe(libroBBDD => {
+        observer.next(libroBBDD);
+        observer.complete();
+      });
+
+    });
+  }
+
+  eliminarLibroObservable(libro: Libro): Observable<Libro> {
+    return new Observable<Libro>(observer => {
+
+      this.httpClient.delete<Libro>('http://localhost:3000/libros/'+libro.id).subscribe(libroBBDD => {
         observer.next(libroBBDD);
         observer.complete();
       });

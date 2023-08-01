@@ -4,4 +4,5 @@ export interface Libro{
     autor?:string;
     stock:number;
     precio:number;
+    id?:number;
 }

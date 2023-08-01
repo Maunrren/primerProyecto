@@ -38,30 +38,6 @@
       "autor": "gabriel",
       "stock": "4",
       "precio": "33"
-    },
-    {
-      "titulo": "eafasd",
-      "autor": "sdfsa",
-      "cantidadPaginas": "234",
-      "stock": "234",
-      "precio": "234",
-      "id": 6
-    },
-    {
-      "titulo": "pepe",
-      "autor": "pepito",
-      "cantidadPaginas": "989",
-      "stock": "34",
-      "precio": "10'59",
-      "id": 7
-    },
-    {
-      "titulo": "asd",
-      "autor": "asd",
-      "cantidadPaginas": "1234",
-      "stock": "23",
-      "precio": "12334",
-      "id": 8
     }
   ]
 }

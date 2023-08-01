@@ -13,7 +13,7 @@ import { ConfigService } from '../services/config.service';
 export class ExpositorLibrosComponent {
 
   modoElegido:string = 'Comprar';
-
+  libroBorrado:Libro;
   librosOfrecidos:Libro[] = [];
   librosComprados:Libro[] = [];
   libroService:LibroService = inject(LibroService);
@@ -32,9 +32,7 @@ export class ExpositorLibrosComponent {
     });
     console.log('segundaparte');*/
     //Observable
-    this.libroService.recuperarLibrosObservable().subscribe(librosBBDD =>{
-      this.librosOfrecidos= librosBBDD;
-    });
+    this.recuperarLibro();
 
     console.log(this.libroService.miLibroFavorito);
     this.libroService.miLibroFavorito = 'El relato de un naufrago';
@@ -67,7 +65,16 @@ export class ExpositorLibrosComponent {
     this.librosComprados.splice(this.librosComprados.indexOf(libro),1)
   }
 
-
-  
+  recuperarLibro():void{
+    this.libroService.recuperarLibrosObservable().subscribe(librosBBDD =>{
+      this.librosOfrecidos= librosBBDD;
+    });
+  }
+  eliminarLibro(libro:Libro):void{
+    this.libroService.eliminarLibroObservable(libro).subscribe(() =>{
+      //refresca la página, el libro ya está borrado
+      this.recuperarLibro();
+    });
+  }
 
 }

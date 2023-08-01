@@ -14,7 +14,7 @@
 
 <h2>Cátalogo de libros</h2>
 <div class="cards">
-    <app-carta-libro *ngFor="let libro of librosOfrecidos" [libroRecibido]="libro" (comprado)="gestionaCompra($event)" ></app-carta-libro>
+    <app-carta-libro *ngFor="let libro of librosOfrecidos" [libroRecibido]="libro" (comprado)="gestionaCompra($event)" (eliminado)="eliminarLibro(libro)" ></app-carta-libro>
 </div>
 
 

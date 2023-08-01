@@ -25,13 +25,17 @@ import { LibroService } from './services/libro.service';
 // Import library module
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HttpClientModule } from '@angular/common/http';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 @NgModule({
   declarations: [
     AppComponent,
     ExpositorLibrosComponent,
     CreacionLibroComponent,
     LoginComponent,
-    CartaLibroComponent
+    CartaLibroComponent,
+    DialogoConfirmacionComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    MatDialogModule,
     NgxSpinnerModule,
     HttpClientModule
   ],
