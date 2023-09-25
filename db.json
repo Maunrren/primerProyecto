@@ -3,10 +3,10 @@
     {
       "id": 1,
       "titulo": "Cien de años soledad",
-      "cantidadPaginas": 10,
       "autor": "Gabriel Garcia Marquez",
+      "cantidadPaginas": 10,
       "stock": 15,
-      "precio": 20
+      "precio": "20"
     },
     {
       "id": 2,

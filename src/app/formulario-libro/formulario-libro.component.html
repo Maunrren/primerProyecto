@@ -1,11 +1,11 @@
-<h1>Formulario Creación de Libros</h1>
+<h1>Formulario de {{formularioLibro.value.id ? 'edición' : 'creación'}} de Libros</h1>
 
-<form [formGroup]="formularioCreacion">
+<form [formGroup]="formularioLibro">
     <mat-form-field>
         <mat-label>Titulo del libro</mat-label>
         <input matInput placeholder="El Señor de los Anillos: La comunidad del anillo" formControlName="titulo">
         <!--Se puede controlar los mensajes de error de dos formas-->
-        <mat-error *ngIf="formularioCreacion.get('titulo')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="formularioLibro.get('titulo')?.hasError('required')">Este campo es obligatorio</mat-error>
         <!--<mat-error *ngIf="formularioLogin.controls?.['correo']?.errors?.['email']">Este campo necesita ser del formato email -> ejemplo@dominio.com</mat-error>-->
     </mat-form-field>
     <mat-form-field >
@@ -15,22 +15,22 @@
     <mat-form-field >
         <mat-label>Stock</mat-label>
         <input matInput placeholder="33" formControlName="stock">
-        <mat-error *ngIf="formularioCreacion.get('stock')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="formularioLibro.get('stock')?.hasError('required')">Este campo es obligatorio</mat-error>
     </mat-form-field>
     <mat-form-field >
         <mat-label>Cantidad de Páginas</mat-label>
         <input matInput placeholder="400" formControlName="cantidadPaginas">
-        <mat-error *ngIf="formularioCreacion.get('cantidadPaginas')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="formularioLibro.get('cantidadPaginas')?.hasError('required')">Este campo es obligatorio</mat-error>
     </mat-form-field>
     <mat-form-field >
         <mat-label>Precio</mat-label>
         <input matInput placeholder="10'79€" formControlName="precio">
-        <mat-error *ngIf="formularioCreacion.get('precio')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="formularioLibro.get('precio')?.hasError('required')">Este campo es obligatorio</mat-error>
     </mat-form-field>
-    <button mat-raised-button type="button" color="primary" [disabled]="formularioCreacion.invalid" (click)="crearLibro()">Añadir Libro</button>
+    <button mat-raised-button type="button" color="primary" [disabled]="formularioLibro.invalid" (click)="guardarLibro()">Guardar Libro</button>
 </form>
 <pre>
-    {{formularioCreacion.value | json}}
+    {{formularioLibro.value | json}}
 </pre>
 
 <h2>Cátalogo de libros añadidos</h2>

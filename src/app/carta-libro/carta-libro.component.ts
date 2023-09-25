@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../dialogo-confirmacion/dialogo-confirmacion.component"
 import { LibroService } from '../services/libro.service';
 import { ConfigService } from '../services/config.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carta-libro',
@@ -21,6 +22,7 @@ export class CartaLibroComponent {
   @Output() sacado:EventEmitter<void> = new EventEmitter();
   @Output() eliminado:EventEmitter<void> = new EventEmitter();
   
+  router:Router = inject(Router);
   comprar(){
     this.comprado.emit(this.libroRecibido);
   }
@@ -38,7 +40,9 @@ export class CartaLibroComponent {
 
     
   }
-
+  editarLibro(){
+    this.router.navigateByUrl('edicionLibro/'+this.libroRecibido.id);
+  }
   sacar(){
     this.sacado.emit();
     

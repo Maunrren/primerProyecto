@@ -4,6 +4,8 @@ import { Libro } from '../interfaces/Libro';
 import { LoginService } from './login.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable(
   //con esto es global, lo "eliminamos"
@@ -14,6 +16,9 @@ export class LibroService {
   loginService: LoginService = inject(LoginService);
   spinner: NgxSpinnerService = inject(NgxSpinnerService);
   httpClient: HttpClient = inject(HttpClient);
+  notificacion: MatSnackBar = inject(MatSnackBar);
+  //creamos una variable para la API de URL con la DB
+  apiUrl: string = environment.api + 'libros';
   constructor() {
     this.spinner.show();
     this.spinner.hide();
@@ -57,7 +62,7 @@ export class LibroService {
   recuperarLibrosObservable(): Observable<Libro[]> {
 
     return new Observable<Libro[]>(observer => {
-      this.httpClient.get<Libro[]>('http://localhost:3000/libros').subscribe(librosBBDD => {
+      this.httpClient.get<Libro[]>(this.apiUrl).subscribe(librosBBDD => {
 
         console.log(librosBBDD);
         this.spinner.show();
@@ -70,10 +75,21 @@ export class LibroService {
     });
   }
 
+  recuperarLibroObservable(id: number): Observable<Libro> {
+
+    return new Observable<Libro>(observer => {
+      this.httpClient.get<Libro>(`${this.apiUrl}/${id}`).subscribe(libroBBDD => {
+        observer.next(libroBBDD);
+        observer.complete();
+      });
+
+
+    });
+  }
   crearLibroObservable(libro: Libro): Observable<Libro> {
     return new Observable<Libro>(observer => {
-
-      this.httpClient.post<Libro>('http://localhost:3000/libros', libro).subscribe(libroBBDD => {
+      //this.apiUrl viene del environment (carpeta environments)
+      this.httpClient.post<Libro>(this.apiUrl, libro).subscribe(libroBBDD => {
         observer.next(libroBBDD);
         observer.complete();
       });
@@ -81,11 +97,33 @@ export class LibroService {
     });
   }
 
-  eliminarLibroObservable(libro: Libro): Observable<Libro> {
+  editarLibroObservable(libroEditar: Libro): Observable<Libro> {
     return new Observable<Libro>(observer => {
+      //this.apiUrl viene del environment (carpeta environments)
+      this.httpClient.put<Libro>(`${this.apiUrl}/${libroEditar.id}`, libroEditar).subscribe(libroEditado=> {
+        this.notificacion.open('Libro '+libroEditado.titulo+' editado correctamente', 'Cerrar', {duration: 3000});
+        observer.next(libroEditado);
+        observer.complete();
+      });
 
-      this.httpClient.delete<Libro>('http://localhost:3000/libros/'+libro.id).subscribe(libroBBDD => {
-        observer.next(libroBBDD);
+    });
+  }
+  eliminarLibroObservable(libro: Libro): Observable<Libro> {
+    /*queryParam aporta información extra:
+        apiUrl/libros/paginado?page=1;pageSize=10;
+        
+    
+      path param
+      Path param, se trata para identificadores y acceder a dominios
+          apiUrl/libros/IDLIBRO
+          apiURL/biblioteca/IDBIBLIOTECA/libro/IDLIBRO
+
+
+    */
+    return new Observable<Libro>(observer => {
+                                    //también se podría utilizar:  `${this.apiUrl}/${id}`
+      this.httpClient.delete<Libro>(this.apiUrl +'/'+ libro.id).subscribe(() => {
+        observer.next();
         observer.complete();
       });
 
