@@ -20,3 +20,5 @@
 
 <button (click)="modoElegido = 'Comprar'">Comprar</button>
 <button (click)="cambiarModo('Consultar')">Consultar</button>
+
+<app-tabla-generica [datos]="librosOfrecidos" [columnas]="['Título','Autor','Cantidad de Páginas','Stock','Precio']" [modelos]="['titulo','autor','cantidadPaginas','stock','precio']" ></app-tabla-generica>

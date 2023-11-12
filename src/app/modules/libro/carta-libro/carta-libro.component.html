@@ -1,20 +1,19 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title>Titulo: {{libroRecibido.titulo | uppercase}}</mat-card-title>
-        <mat-card-subtitle>Autor: {{libroRecibido.autor}}</mat-card-subtitle>
+        <mat-card-subtitle>Autor: {{libroRecibido.autor ??  'Anónimo'}}</mat-card-subtitle>
         <mat-card-subtitle >Cantidad de Paginas: {{libroRecibido.cantidadPaginas}}</mat-card-subtitle>
         <ng-container *ngIf="!estaEnCarrito">
         <mat-card-subtitle >Stock: {{libroRecibido.stock}}</mat-card-subtitle>
-        <mat-card-subtitle >Precio: {{libroRecibido.precio}}</mat-card-subtitle>
+        <mat-card-subtitle >Precio: {{libroRecibido.precio ?  libroRecibido.precio+'€' : ''}}</mat-card-subtitle>
         </ng-container>
     </mat-card-header>
     <mat-card-actions *ngIf="estaEnCarrito">
         <button mat-raised-button color="primary" (click)="sacar()">Quitar del carrito</button>
     </mat-card-actions>
-    <mat-card-actions *ngIf="!estaEnCarrito">
+    <mat-card-actions *ngIf="!estaEnCarrito && !estaEnLectura">
         <button mat-raised-button color="primary" (click)="comprar()">Comprar</button>
-        <button mat-raised-button color="accent">Añadir</button>
-        <button mat-raised-button color="secundary"(click)="editarLibro()" >Editar</button>
-        <button mat-raised-button color="warn"(click)="mostrarDialogoEliminar()" >Eliminar</button>
+        <button mat-raised-button *ngIf="logeado==true" color="secundary"(click)="editarLibro()" >Editar</button>
+        <button mat-raised-button *ngIf="logeado==true" color="warn"(click)="mostrarDialogoEliminar()" >Eliminar</button>
     </mat-card-actions>
 </mat-card>

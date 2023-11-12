@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output, inject } from '@angular/core';
-import { Libro } from '../interfaces/Libro';
+import { Libro } from '../../modules/libro/interfaces/Libro';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({

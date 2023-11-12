@@ -1,11 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Libro } from '../interfaces/Libro';
-import { LoginService } from './login.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Libro } from 'src/app/modules/libro/interfaces/Libro';
+import { LoginService } from '../../usuario/services/login.service';
 
 @Injectable(
   //con esto es global, lo "eliminamos"
@@ -19,11 +19,6 @@ export class LibroService {
   notificacion: MatSnackBar = inject(MatSnackBar);
   //creamos una variable para la API de URL con la DB
   apiUrl: string = environment.api + 'libros';
-  constructor() {
-    this.spinner.show();
-    this.spinner.hide();
-
-  }
 
   /*recuperarLibrosPromesa(): Promise<Libro[]> {
     return new Promise<Libro[]>((resolve, reject) => {
@@ -60,15 +55,16 @@ export class LibroService {
   }*/
 
   recuperarLibrosObservable(): Observable<Libro[]> {
-
+    this.spinner.show();
     return new Observable<Libro[]>(observer => {
       this.httpClient.get<Libro[]>(this.apiUrl).subscribe(librosBBDD => {
-
+        setTimeout(() => {
         console.log(librosBBDD);
-        this.spinner.show();
+       
         observer.next(librosBBDD);
         observer.complete();
         this.spinner.hide();
+      },500)
       });
 
 
@@ -76,11 +72,16 @@ export class LibroService {
   }
 
   recuperarLibroObservable(id: number): Observable<Libro> {
-
+    this.spinner.show();
     return new Observable<Libro>(observer => {
       this.httpClient.get<Libro>(`${this.apiUrl}/${id}`).subscribe(libroBBDD => {
-        observer.next(libroBBDD);
-        observer.complete();
+        //Settimeout para mostrar el spinner
+       
+          observer.next(libroBBDD);
+          this.spinner.hide();
+          observer.complete();
+      
+
       });
 
 
@@ -100,8 +101,8 @@ export class LibroService {
   editarLibroObservable(libroEditar: Libro): Observable<Libro> {
     return new Observable<Libro>(observer => {
       //this.apiUrl viene del environment (carpeta environments)
-      this.httpClient.put<Libro>(`${this.apiUrl}/${libroEditar.id}`, libroEditar).subscribe(libroEditado=> {
-        this.notificacion.open('Libro '+libroEditado.titulo+' editado correctamente', 'Cerrar', {duration: 3000});
+      this.httpClient.put<Libro>(`${this.apiUrl}/${libroEditar.id}`, libroEditar).subscribe(libroEditado => {
+        this.notificacion.open('Libro ' + libroEditado.titulo + ' editado correctamente', 'Cerrar', { duration: 3000 });
         observer.next(libroEditado);
         observer.complete();
       });
@@ -121,8 +122,8 @@ export class LibroService {
 
     */
     return new Observable<Libro>(observer => {
-                                    //también se podría utilizar:  `${this.apiUrl}/${id}`
-      this.httpClient.delete<Libro>(this.apiUrl +'/'+ libro.id).subscribe(() => {
+      //también se podría utilizar:  `${this.apiUrl}/${id}`
+      this.httpClient.delete<Libro>(this.apiUrl + '/' + libro.id).subscribe(() => {
         observer.next();
         observer.complete();
       });

@@ -35,5 +35,5 @@
 
 <h2>Cátalogo de libros añadidos</h2>
 <div class="cards">
-   <app-carta-libro *ngFor="let libro of librosCreados" [libroRecibido]="libro" ></app-carta-libro>
+   <app-carta-libro *ngFor="let libro of librosCreados" [estaEnLectura]="true" [libroRecibido]="libro" ></app-carta-libro>
 </div>

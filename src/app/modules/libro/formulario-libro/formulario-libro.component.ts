@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ConfigService } from '../services/config.service';
-import { LibroService } from '../services/libro.service';
+import { ConfigService } from '../../../services/config.service';
 import { Libro } from '../interfaces/Libro';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LibroService } from '../services/libro.service';
 
 @Component({
   selector: 'app-formulario-libro',

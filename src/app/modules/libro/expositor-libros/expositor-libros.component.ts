@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Libro } from '../interfaces/Libro';
-import { Observable } from 'rxjs';
+import { ConfigService } from '../../../services/config.service';
 import { LibroService } from '../services/libro.service';
-import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-expositor-libros',

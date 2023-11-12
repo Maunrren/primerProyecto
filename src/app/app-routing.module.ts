@@ -1,32 +1,20 @@
 import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ExpositorLibrosComponent } from './expositor-libros/expositor-libros.component';
-import { FormularioLibroComponent } from './formulario-libro/formulario-libro.component';
-import { LoginComponent } from './login/login.component';
-import { LoginService } from './services/login.service';
+import { ExpositorLibrosComponent } from './modules/libro/expositor-libros/expositor-libros.component';
+import { FormularioLibroComponent } from './modules/libro/formulario-libro/formulario-libro.component';
+import { LoginService } from './modules/usuario/services/login.service';
 
 const routes: Routes = [
-  { path:'expositor',
-    component: ExpositorLibrosComponent,
-    title: 'Expositor de libros'
+  {
+    path:'',redirectTo:'libro/expositor', pathMatch:'full'
   },
-  { path: 'creacion',
-    component:FormularioLibroComponent,
-    title: 'Creación de libros',
-    canActivate:[
-      () => inject(LoginService).IsLogged()
-    ]
+  { path: 'usuario',
+    loadChildren: () =>
+      import('./modules/usuario/usuario.module').then(m => m.UsuarioModule)
   },
-  { path: 'edicionLibro/:id',
-    component:FormularioLibroComponent,
-    title: 'Edición de libro',
-    canActivate:[
-      () => inject(LoginService).IsLogged()
-    ]
-  },
-  { path: 'login',
-    component:LoginComponent,
-    title: 'Iniciar Sesión'
+  { path: 'libro',
+    loadChildren: () =>
+      import('./modules/libro/libro.module').then(m => m.LibroModule)
   }
 
 ];

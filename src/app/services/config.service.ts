@@ -7,6 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ConfigService {
   tituloWeb: BehaviorSubject<string> = new BehaviorSubject('Inicio');
-
+  logeadoSub: BehaviorSubject<boolean>= new BehaviorSubject(false);
   constructor() { }
 }

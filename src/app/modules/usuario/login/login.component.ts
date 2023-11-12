@@ -2,8 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LibroService } from '../services/libro.service';
-import { ConfigService } from '../services/config.service';
+import { ConfigService } from '../../../services/config.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -16,19 +16,18 @@ export class LoginComponent implements OnInit {
   router:Router = inject(Router);
 
   notificacion:MatSnackBar = inject(MatSnackBar);
-  libroService:LibroService = inject(LibroService);
   configService:ConfigService = inject(ConfigService);
+  loginService: LoginService = inject(LoginService);
   constructor(){
     this.configService.tituloWeb.next('Inicio de sesión');
   }
   ngOnInit(){
     this.formularioLogin = new FormGroup({
       //primer parametro es valor por defecto -> null, segundo parametro es el validador. Si quieres varios validadores los insertaras en un array []
-      correo: new FormControl(null,[Validators.email,Validators.required]),
-      contrasena: new FormControl(null,Validators.required)
+      correo: new FormControl('admin@gmail.com',[Validators.email,Validators.required]),
+      contrasena: new FormControl('1234',Validators.required)
 
     });
-    console.log(this.libroService.miLibroFavorito);
     
     
   }
@@ -39,11 +38,12 @@ export class LoginComponent implements OnInit {
 
     if(correEscrito === 'admin@gmail.com' && contrasena === '1234'){
       sessionStorage.setItem('token','1');
-      //Método navigateByUrl
-      this.router.navigateByUrl('creacion');
+      this.loginService.logeado = true;
+        //Método navigateByUrl
+      this.router.navigateByUrl('libro/creacion');
     }
     else{
-      this.notificacion.open('Correo o contraseña incorrectos', 'Cerrar', {duration:3000})
+      this.notificacion.open('Correo o contraseña incorrectos', 'Cerrar', {duration:3000});
     }
 
     
