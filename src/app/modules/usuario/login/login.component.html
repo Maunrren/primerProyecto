@@ -6,7 +6,7 @@
         <input matInput placeholder="hola@gmail.com" formControlName="correo">
         <!--Se puede controlar los mensajes de error de dos formas-->
         <mat-error *ngIf="formularioLogin.get('correo')?.hasError('required')">Este campo es obligatorio</mat-error>
-        <mat-error *ngIf="formularioLogin.controls?.['correo']?.errors?.['email']">Este campo necesita ser del formato email -> ejemplo@dominio.com</mat-error>
+        <mat-error *ngIf="formularioLogin.controls?.['correo']?.errors?.['email']">Este campo necesita ser del formato email -> ejemplodominio.com</mat-error>
     </mat-form-field>
     <mat-form-field >
         <mat-label>Contraseña</mat-label>

@@ -13,6 +13,7 @@
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <div class="elementoBarra" *ngIf="!loginService.logeado" routerLink="/usuario/login"> Inicio de sesión</div>
         <div class="elementoBarra" routerLink="libro/expositor"> Expositor de libros</div>
+        <div class="elementoBarra" routerLink="autor/expositor"> Expositor de autores</div>
         <div class="elementoBarra" *ngIf="loginService.logeado" routerLink="libro/creacion"> Creación de libros</div>
         <!--{{loginService.logeado}}-->
     </mat-drawer>

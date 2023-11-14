@@ -40,5 +40,13 @@
       "precio": "33"
     }
   ],
-  "autor": []
+  "autores": [
+    {
+    "id": 1,
+    "nombre": "Pepe",
+    "apellido1": "García",
+    "apellido2": "García",
+    "generoFavorito": "Suspense"
+    }
+  ]
 }
