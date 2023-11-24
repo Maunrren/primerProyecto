@@ -76,6 +76,20 @@
       "apellido1": "Flores",
       "apellido2": "Diaz",
       "generoFavorito": "Sci-fi"
+    },
+    {
+      "id": 6,
+      "nombre": "Adrián",
+      "apellido1": "Patata",
+      "apellido2": "Cosa",
+      "generoFavorito": "Acción"
+    },
+    {
+      "id": 7,
+      "nombre": "PEpe",
+      "apellido1": "Roda",
+      "apellido2": "adsd",
+      "generoFavorito": "sdfg"
     }
   ]
 }

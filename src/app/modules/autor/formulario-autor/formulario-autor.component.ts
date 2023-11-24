@@ -66,7 +66,7 @@ export class FormularioAutorComponent implements OnInit{
         this.autorCreado = autoresBBDD;
   
         this.autoresCreados.push(this.autorCreado);
-  
+        this.formularioAutor.reset();
       });
     } 
   }

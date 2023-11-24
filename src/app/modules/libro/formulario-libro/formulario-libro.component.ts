@@ -90,7 +90,7 @@ export class FormularioLibroComponent implements OnInit {
         this.libroCreado = librosBBDD;
 
         this.librosCreados.push(this.libroCreado);
-
+        this.formularioLibro.reset();
       });
     }
 
