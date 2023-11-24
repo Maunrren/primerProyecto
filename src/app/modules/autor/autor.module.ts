@@ -7,12 +7,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AutorService } from './services/autor.service';
 import { CartaAutorComponent } from './carta-autor/carta-autor.component';
 import { ExpositorAutorComponent } from './expositor-autor/expositor-autor.component';
+import { FormularioAutorComponent } from './formulario-autor/formulario-autor.component';
 
 
 @NgModule({
   declarations: [
     CartaAutorComponent,
-    ExpositorAutorComponent
+    ExpositorAutorComponent,
+    FormularioAutorComponent
   ],
   imports: [
     CommonModule,

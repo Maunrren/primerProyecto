@@ -38,15 +38,44 @@
       "autor": "gabriel",
       "stock": "4",
       "precio": "33"
+    },
+    {
+      "id": 6,
+      "titulo": "qwedq",
+      "autor": "qwe",
+      "cantidadPaginas": "234",
+      "stock": "45",
+      "precio": "2342€"
     }
   ],
   "autores": [
     {
-    "id": 1,
-    "nombre": "Pepe",
-    "apellido1": "García",
-    "apellido2": "García",
-    "generoFavorito": "Suspense"
+      "id": 1,
+      "nombre": "Pepe",
+      "apellido1": "García",
+      "apellido2": "García",
+      "generoFavorito": "Suspense"
+    },
+    {
+      "id": 3,
+      "nombre": "Pedro",
+      "apellido1": "García",
+      "apellido2": "Patáncito",
+      "generoFavorito": "Terror"
+    },
+    {
+      "id": 4,
+      "nombre": "Pedro",
+      "apellido1": "García",
+      "apellido2": "Oatñíb",
+      "generoFavorito": "Terror"
+    },
+    {
+      "id": 5,
+      "nombre": "Pepe",
+      "apellido1": "Flores",
+      "apellido2": "Diaz",
+      "generoFavorito": "Sci-fi"
     }
   ]
 }

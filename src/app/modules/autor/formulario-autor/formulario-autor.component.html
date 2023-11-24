@@ -1,0 +1,35 @@
+<h1>Formulario de {{formularioAutor.value.id ? 'edición' : 'creación'}} de Autores</h1>
+
+
+<form [formGroup]="formularioAutor">
+    <mat-form-field>
+        <mat-label>Nombre del Autor</mat-label>
+        <input matInput placeholder="Pedro" formControlName="nombre">
+        <!--Se puede controlar los mensajes de error de dos formas-->
+        <mat-error *ngIf="formularioAutor.get('nombre')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <!--<mat-error *ngIf="formularioLogin.controls?.['correo']?.errors?.['email']">Este campo necesita ser del formato email -> ejemplo@dominio.com</mat-error>-->
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Primer Apellido</mat-label>
+        <input matInput placeholder="García" formControlName="apellido1">
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Segundo Apellido</mat-label>
+        <input matInput placeholder="Patón" formControlName="apellido2">
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Género favorito</mat-label>
+        <input matInput placeholder="Terror" formControlName="generoFavorito">
+        <mat-error *ngIf="formularioAutor.get('generoFavorito')?.hasError('required')">Este campo es obligatorio</mat-error>
+    </mat-form-field>
+    <button mat-raised-button type="button" color="primary" [disabled]="formularioAutor.invalid" (click)="guardarAutor()">Guardar Autor</button>
+</form>
+
+<pre>
+    {{formularioAutor.value | json}}
+</pre>
+
+<h2>Cátalogo de autores añadidos</h2>
+<div class="cards">
+   <app-carta-autor *ngFor="let autor of autoresCreados" [estaEnLectura]="true" [autorRecibido]="autor" ></app-carta-autor>
+</div>

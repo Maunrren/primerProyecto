@@ -41,12 +41,9 @@ export class CartaLibroComponent {
         this.eliminado.emit();
       }
     });
-    
-
-    
   }
   editarLibro(){
-    this.router.navigateByUrl('edicionLibro/'+this.libroRecibido.id);
+    this.router.navigateByUrl('libro/edicion/'+this.libroRecibido.id);
   }
   sacar(){
     this.sacado.emit();

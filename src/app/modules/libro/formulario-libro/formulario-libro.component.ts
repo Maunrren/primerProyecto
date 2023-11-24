@@ -81,7 +81,7 @@ export class FormularioLibroComponent implements OnInit {
       this.libroService.editarLibroObservable(libroPreparado).subscribe(() =>{
         
         //this.librosCreados.push(this.libroCreado);
-        this.router.navigateByUrl('expositor');
+        this.router.navigateByUrl('libro/expositor');
 
       });
     }

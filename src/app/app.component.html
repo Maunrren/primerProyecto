@@ -15,6 +15,7 @@
         <div class="elementoBarra" routerLink="libro/expositor"> Expositor de libros</div>
         <div class="elementoBarra" routerLink="autor/expositor"> Expositor de autores</div>
         <div class="elementoBarra" *ngIf="loginService.logeado" routerLink="libro/creacion"> Creación de libros</div>
+        <div class="elementoBarra" *ngIf="loginService.logeado" routerLink="autor/creacion"> Creación de autores</div>
         <!--{{loginService.logeado}}-->
     </mat-drawer>
     <!--<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true"><p style="color: white" > Cargando... </p></ngx-spinner>-->

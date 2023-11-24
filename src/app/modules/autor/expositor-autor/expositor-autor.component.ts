@@ -35,4 +35,11 @@ export class ExpositorAutorComponent {
       this.autoresOfrecidos= autoresBBDD;
     });
   }
+
+  eliminarAutor(autor:Autor):void{
+    this.autorService.eliminarAutorObservable(autor).subscribe(() =>{
+      //refresca la página, el libro ya está borrado
+      this.recuperarAutor();
+    });
+  }
 }

@@ -2,5 +2,5 @@
 
 <h2>Cátalogo de autores</h2>
 <div class="cards">
-    <app-carta-autor *ngFor="let autor of autoresOfrecidos" [autorRecibido]="autor" ></app-carta-autor>
+    <app-carta-autor *ngFor="let autor of autoresOfrecidos" [autorRecibido]="autor" (eliminado)="eliminarAutor(autor)" ></app-carta-autor>
 </div>

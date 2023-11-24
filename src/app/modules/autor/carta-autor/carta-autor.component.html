@@ -1,7 +1,10 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Nombre: {{autorRecibido.nombre}}</mat-card-title>
-        <mat-card-subtitle>Apellidos: {{autorRecibido.apellido1}} {{autorRecibido.apellido2}} </mat-card-subtitle>
+        <mat-card-title>Nombre: {{autorRecibido.nombre}} {{autorRecibido.apellido1}} {{autorRecibido.apellido2}}</mat-card-title>
+        <!--mat-card-subtitle>Apellidos:  </mat-card-subtitle-->
     </mat-card-header>
-   
+    <mat-card-actions>
+        <button mat-raised-button *ngIf="logeado==true" color="secundary"(click)="editarAutor()" >Editar</button>
+        <button mat-raised-button *ngIf="logeado==true" color="warn"(click)="mostrarDialogoEliminar()" >Eliminar</button>
+    </mat-card-actions>
 </mat-card>

@@ -5,7 +5,7 @@ import { ExpositorLibrosComponent } from './expositor-libros/expositor-libros.co
 import { FormularioLibroComponent } from './formulario-libro/formulario-libro.component';
 
 const routes: Routes = [
-  { path:'expositor',
+  { path: 'expositor',
     component: ExpositorLibrosComponent,
     title: 'Expositor de libros'
   },
@@ -16,7 +16,7 @@ const routes: Routes = [
       () => inject(LoginService).IsLogged()
     ]
   },
-  { path: 'edicionLibro/:id',
+  { path: 'edicion/:id',
     component:FormularioLibroComponent,
     title: 'Edición de libro',
     canActivate:[
